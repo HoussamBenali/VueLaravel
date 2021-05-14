@@ -1,15 +1,15 @@
 <template>
   <div>
-    <button type="button" class="btn btn-success" v-on:click="mostrar">Choose Avatar</button>
+    <button type="button" class="btn btn-success" @click="mostrar">Choose Avatar</button>
       <div v-if="choose" class="galeria">
-        <input type="radio" name="navegacion" id="_1" value="Usul.webp" v-model="img_name" v-on:click="pas_name('Usul.webp')">
-        <input type="radio" name="navegacion" id="_2" value="Aura.webp" v-on:click="pas_name('Aura.webp')">
-        <input type="radio" name="navegacion" id="_3" value="Bruno.webp" v-on:click="pas_name('Bruno.webp')">
-        <input type="radio" name="navegacion" id="_4" value="Hoja.webp" v-on:click="pas_name('Hoja.webp')"> 
-        <img :src="'../../../storage/Usul.webp'" width="230" height="300" alt="Galeria CSS 1" />
-        <img :src="'../../../storage/Aura.webp'" width="230" height="300" alt="Galeria CSS 2"  />
-        <img :src="'../../../storage/Bruno.webp'" width="230" height="300" alt="Galeria CSS 3" />
-        <img :src="'../../../storage/Hoja.webp'" width="230" height="300" alt="Galeria CSS 4" />
+        <input type="radio" name="navegacion" id="_1" value="Usul.webp" v-model="img_name" @click="pas_name('Usul.webp')">
+        <input type="radio" name="navegacion" id="_2" value="Aura.webp"  @click="pas_name('Aura.webp')">
+        <input type="radio" name="navegacion" id="_3" value="Bruno.webp" @click="pas_name('Bruno.webp')">
+        <input type="radio" name="navegacion" id="_4" value="Hoja.webp"  @click="pas_name('Hoja.webp')"> 
+        <img :src="route+img_name" width="230" height="300" alt="Galeria CSS 1" />
+        <img :src="route+img_name" width="230" height="300" alt="Galeria CSS 2"  />
+        <img :src="route+img_name" width="230" height="300" alt="Galeria CSS 3" />
+        <img :src="route+img_name" width="230" height="300" alt="Galeria CSS 4" />
     </div>
 </div>
 </template>
@@ -18,8 +18,11 @@ export default {
     data() {
         return {
           choose: false,
-          img_name: "Usul.webp"
+          route:'../../../storage/'
         }
+    },
+    props:{
+      img_name: {}
     },
     methods: {
       mostrar(){

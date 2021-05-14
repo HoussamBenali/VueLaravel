@@ -36,7 +36,7 @@
                     </div>
                 </span>
                 <span v-else>
-                <!-- {{pokemons_cart[0]}} -->
+                <!-- Si el preu es superior al presupost -->
                     <div class="col-md-5 s_sec ">
                         <div class="card carta" v-if="coins_total >= pokemon.price" :style="cardColor(pokemon.rarity)">
                             <img class="card-img-top" :src=pokemon.image_path >
@@ -51,6 +51,7 @@
                                     </button>
                                 </div> 
                         </div>
+                <!-- Si te els diners per comprarlo -->
                         <div class="card carta" v-else :style="cardColor(pokemon.rarity)">
                             <!-- <span> -->
                             <img class="card-img-top" :src=pokemon.image_path > 
@@ -64,15 +65,15 @@
                                         <i class="fas fa-plus"></i>
                                     </button>
                                 </div> 
-                            <!-- </span> -->
+                          
                         </div>
                     </div>
                 </span>
             </span>
-
+            <!-- Informacio extra -->
             <div class="modal fade" id="centralModalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-notify modal-info" role="document">
-                    <div class="card cartaInfo">
+                    <div class="card cartaInfo" :style="cardColor(pokeInfo.rarity)">
                         <img class="card-img-top-info" :src=pokeInfo.image_path  alt="bulbasaur">
                             <span class="card-name-info">{{ pokeInfo.name }}</span>
                             <span class="card-text-info">ATK: {{ pokeInfo.ATK }}</span>

@@ -38,7 +38,7 @@
                 :validator = "$v.form.rpassword"
                 ></BaseInput>
             </div>
-            <PlantillaAvatar v-on:captura="capturar($event)"></PlantillaAvatar>
+            <PlantillaAvatar :img_name="img_name" v-on:captura="capturar($event)"></PlantillaAvatar>
             <button 
                 :disabled="!formValidate"
                 type="submit"
@@ -46,7 +46,6 @@
             </button>
             <hr>
         
-            <hr>
             <div class="container">
                 <label class="psw">
                     <span>Already have an account? <router-link to="login">Sign in</router-link></span>
@@ -129,6 +128,7 @@ export default {
                     email:this.$v.form.email.$model,
                     password:this.$v.form.password.$model,
                     rpassword:this.$v.form.rpassword.$model,
+                    img_name: this.img_name
                 }).then (response => {
                     console.log("RESPUESTA ",response.data);
                     this.resetForm();

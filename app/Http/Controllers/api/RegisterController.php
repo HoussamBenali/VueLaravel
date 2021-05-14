@@ -40,6 +40,8 @@ class RegisterController extends ApiResponseController
                 'nick' => $nick,
                 'email' => $email,
                 'password' => Hash::make($password),
+                'image'=>$request->all()['img_name']
+
             ]);
             // dd($validator->validated()); 
 
