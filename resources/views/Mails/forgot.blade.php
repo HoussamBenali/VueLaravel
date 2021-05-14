@@ -1,1 +1,1 @@
-Change your password <a href="http://192.168.1.72:8000/reset/{{$token}}"> here</a>
+Change your password <a href="https://poke-vue-laravel.herokuapp.com/reset/{{$token}}"> here</a>

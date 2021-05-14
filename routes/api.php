@@ -29,8 +29,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
 
-
-//Route::get('user/pricePoke', [App\Http\Controllers\UserController::class,'pricePoke']); //UPDATE PRICE_POKEMONS
+ //UPDATE PRICE_POKEMONS
+Route::get('user/pricePoke', [App\Http\Controllers\UserController::class,'pricePoke']);
+Route::resource('pokemon', App\Http\Controllers\api\PokemonController::class)->only(['index','show','store'])->middleware('auth:sanctum');
 Route::post('user/restarPrice', [App\Http\Controllers\UserController::class,'restar_price']);
 Route::post('user/sumarPrice', [App\Http\Controllers\UserController::class,'sumar_price']);
 Route::post('user/savePoke', [App\Http\Controllers\UserController::class,'save_poke']);
@@ -43,7 +44,7 @@ Route::post('setRewards',[App\Http\Controllers\UserController::class, 'setReward
 Route::post('getDeck',[App\Http\Controllers\UserController::class, 'getDeck'])->name('getDeck');
 Route::post('setPokemon/{id}',[App\Http\Controllers\UserController::class, 'setPokemon'])->name('setPokemon');
 Route::post('/reset/{token}', [App\Http\Controllers\ForgotController::class, 'reset'])->name('reset');
-Route::resource('pokemon', App\Http\Controllers\api\PokemonController::class)->only(['index','show','store'])->middleware('auth:sanctum');
+
 Route::post('forgot', [App\Http\Controllers\ForgotController::class, 'forgot'])->name('forgot');
 Route::post('register', [App\Http\Controllers\api\RegisterController::class,'store']);
 
