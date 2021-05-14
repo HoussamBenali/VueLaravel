@@ -4,11 +4,11 @@
   
   <div class="battle-arena" :style=" {'background-image': 'url('+mapa+')','background-size': '100% 100%'} ">
     <div class="tutorial-card-opponent">
-    <Card  :HP="opponent.HP" :maxHP="opponent.maxHP" :Name="opponent.name" :ATK="opponent.ATK" :DEF="opponent.DEF" :SPD="opponent.SPD"
+    <Card  :HP="opponent.hp" :maxHP="opponent.maxHP" :Name="opponent.name" :ATK="opponent.atk" :DEF="opponent.def" :SPD="opponent.spd"
      :Img="opponent.image_path" :Type="opponent.type" :Level="opponent.level" :HPBar="opponent.HPBar" ></Card>
     </div>
     <div class="tutorial-card-player">
-    <Card :HP="player.HP" :maxHP="player.maxHP" :Name="player.name" :ATK="player.ATK" :DEF="player.DEF" :SPD="player.SPD" :Img="player.image_path" 
+    <Card :HP="player.hp" :maxHP="player.maxHP" :Name="player.name" :ATK="player.atk" :DEF="player.def" :SPD="player.spd" :Img="player.image_path" 
           :Type="player.type" :Level="player.level" :HPBar="player.HPBar" :Player="player" :IconsPath="IconsPath"></Card>
     </div>
     
@@ -73,7 +73,12 @@ export default {
         matchEnded: false,
         timeOut:'',
         mapa: 'https://raw.githubusercontent.com/HoussamBenali/Assets/main/images/Fondos/Grassland.jpg',
-
+        maxedHP:false,
+        maxedATK:false,
+        maxedDEF:false,
+        opmaxedHP:false,
+        opmaxedATK:false,
+        opmaxedDEF:false,
     }
   },
   mounted() {  
@@ -87,40 +92,38 @@ methods: {
           
                 const resB = await axios.get('/api/pokemon/'+1)
                 let Bulbasaur = resB.data.data
+                Vue.set(Bulbasaur, "HPBar",  {width: '100%'})
+                Vue.set(Bulbasaur, "maxHP",  Bulbasaur.hp)
+                Vue.set(Bulbasaur, "HPlimit", Bulbasaur.hp*1.2)
+                Vue.set(Bulbasaur, "maxATK",  Bulbasaur.atk*1.2)
+                Vue.set(Bulbasaur, "maxDEF",  Bulbasaur.def*1.2)
                 const resC= await axios.get('/api/pokemon/'+4)
                 let Charmander = resC.data.data
+                Vue.set(Charmander, "HPBar",  {width: '100%'})
+                Vue.set(Charmander, "maxHP",  Charmander.hp)
+                Vue.set(Charmander, "HPlimit", Charmander.hp*1.2)
+                Vue.set(Charmander, "maxATK",  Charmander.atk*1.2)
+                Vue.set(Charmander, "maxDEF",  Charmander.def*1.2)
                 const resS = await axios.get('/api/pokemon/'+7)
                 let Squirtle = resS.data.data
+                Vue.set(Squirtle, "HPBar",  {width: '100%'})
+                Vue.set(Squirtle, "maxHP",  Squirtle.hp)
+                Vue.set(Squirtle, "HPlimit", Squirtle.hp*1.2)
+                Vue.set(Squirtle, "maxATK",  Squirtle.atk*1.2)
+                Vue.set(Squirtle, "maxDEF",  Squirtle.def*1.2)
                 //console.log(Charmander
 
-
           if (this.player.name == "Bulbasaur"){
-
                 this.player=Bulbasaur
-                Vue.set(this.player, "HPBar",  {width: '100%'})
-                Vue.set(this.player, "maxHP",  Bulbasaur.HP)
-
                 this.opponent = Charmander
-                Vue.set(this.opponent, "HPBar",  {width: '100%'})
-                Vue.set(this.opponent, "maxHP",  Charmander.HP)
 
           } else if (this.player.name == 'Charmander'){
                 this.player = Charmander
-                Vue.set(this.player, "HPBar",  {width: '100%'})
-                Vue.set(this.player, "maxHP",  Charmander.HP)
-
                 this.opponent = Squirtle
-                Vue.set(this.opponent, "HPBar",  {width: '100%'})
-                Vue.set(this.opponent, "maxHP", Squirtle.HP)
 
             } else{
                 this.player = Squirtle
-                Vue.set(this.player, "HPBar",  {width: '100%'})
-                Vue.set(this.player, "maxHP", Squirtle.HP)
-
                 this.opponent = Bulbasaur
-                Vue.set(this.opponent, "HPBar",  {width: '100%'})
-                Vue.set(this.opponent, "maxHP", Bulbasaur.HP)
             }
       
         },
@@ -168,62 +171,131 @@ methods: {
         }
       },
 
-selectAttack(attack) {
+  selectAttack(attack) {       
         this.attacks = false
-        this.options = false
         this.disabledOptions = true
-        let realDamage=Math.round(((this.player.moves[attack-1].power + this.player.ATK)/2) - this.opponent.DEF)
-        if (realDamage<=0){
-            realDamage=1
-        }
-        this.opponent.HP -= realDamage
-        var percent=this.opponent.HP/this.opponent.maxHP*100
+        var skill=this.player.moves[attack-1].power
+        if (isNaN(skill)){
+            if (skill=="ATK"){
+              if(this.player.atk<this.player.maxATK){
+                this.player.atk = this.player.atk*1.2
+              } else{ this.maxedATK=true }
+            } else if (skill=="DEF"){
+                if(this.player.def<this.player.maxDEF){
+                  this.player.def = this.player.def*1.2
+                } 
+                else{ this.maxedDEF=true }   
+            } else if (skill=="HP"){
+              if(this.player.maxHP<this.player.HPlimit){
+                  this.player.maxHP = this.player.maxHP*1.2
+                  this.player.hp= this.player.hp*1.2
+                } 
+              else{ this.maxedHP=true }
+            }
+        }else{
+          let realDamage=Math.round(((skill + this.player.atk)/2) - this.opponent.def)
+          if (realDamage<=0){
+              realDamage=1
+          }
+          this.opponent.hp -= realDamage
+          var percent=Math.round(this.opponent.hp/this.opponent.maxHP*100)
+        }  
+
         if(this.Fainted(this.opponent)){
-              this.opponent.HP=0
-              this.opponent.HPBar = {width: '0%'}
+              this.opponent.hp=0
+              this.opponent.HPBar = {width: '0%'}  
               this.battleText = this.player.name + " used " + this.player.moves[attack-1].name + "!"
-              setTimeout(() => {this.battleText = this.opponent.name + " has fainted! "},2001)
-              setTimeout(() => {this.battleText = "You have won 100 PokeCoins"},4000)
-              this.faintAnimation()
+              setTimeout(() => {this.battleText = this.opponent.name + " has fainted! ", this.faintAnimation()},2000)                    
+        } 
+         //Si usuari segueix amb vida
+        else{
+            this.opponent.HPBar.width =percent + "%"
+            if(isNaN(skill)){
+              if (skill=="ATK" && this.maxedATK || skill=="DEF" && this.maxedDEF || skill=="HP" && this.maxedHP ){
+                  this.battleText = this.player.name + " used " + this.player.moves[attack-1].name + "!"
+                  setTimeout(() => {this.battleText = this.player.name + " can't increase his "+ skill+"anymore!"}, 2000)
+                  setTimeout(() => {this.opponentAttack()}, 4000)
+                  setTimeout(() => {this.battleText = "What will " + this.player.name + " do?"},6000)
 
-        } else{
-              this.opponent.HPBar.width =percent + "%"
-              setTimeout(() => { 
-                if (this.Fainted(this.player)==false){
-                    this.timeOut=setTimeout(() => {this.battleText = "What will " + this.player.name + " do?"}, 2000);     
-                }  
-              }, 2000);
-
+              } else{
                 this.battleText = this.player.name + " used " + this.player.moves[attack-1].name + "!"
-                setTimeout(() => {this.opponentAttack()},2000)
-          }   
-                
+                setTimeout(() => {this.battleText = this.player.name + " increased his "+ skill+"!"}, 2000)
+                setTimeout(() => {this.opponentAttack()}, 4000)
+                setTimeout(() => {this.battleText = "What will " + this.player.name + " do?"},6000)
+              }
+            }
+            else{   
+             this.battleText = this.player.name + " used " + this.player.moves[attack-1].name + "!"
+             setTimeout(() => {this.opponentAttack()}, 2000)
+             setTimeout(() => {this.battleText = "What will " + this.player.name + " do?"},4000)     
+            }
+        }
+       
   },
 
-      opponentAttack(){
-        
-          var random = Math.floor((Math.random() * 4) + 1)
-          let realDamage=Math.round(((this.opponent.moves[random-1].power + this.opponent.ATK)/2) - this.player.DEF)
+opponentAttack(){
+  
+  var random = Math.floor((Math.random() * 4) + 1)
+  var opponentSkill=this.opponent.moves[random-1].power
+  console.log(this.opponent.moves[random-1].name)
+  if (isNaN(opponentSkill)){
+        if (opponentSkill=="ATK"){
+              if(this.opponent.atk<this.opponent.maxATK){
+                this.opponent.atk = this.opponent.atk*1.2
+              } else{
+                this.opmaxedATK=true
+              }
+      
+        } else if (opponentSkill=="DEF"){
+              if(this.opponent.def<this.opponent.maxDEF){
+                this.opponent.def = this.opponent.def*1.2
+              }else{
+                this.opmaxedDEF=true
+              }
+        } else if (opponentSkill=="HP"){
+            if(this.opponent.maxHP<this.opponent.HPlimit){
+                this.opponent.maxHP = this.opponent.maxHP*1.2
+                this.opponent.hp = this.opponent.hp*1.2
+              }else{
+                this.opmaxedHP=true
+              }
+        }
+  }else{
+          let realDamage=Math.round(((opponentSkill + this.opponent.atk)/2) - this.player.def)
           if (realDamage<=0){
             realDamage=1
           }
-          this.player.HP -=  realDamage
-          var percent=Math.round(this.player.HP/this.player.maxHP*100)
-          if(this.Fainted(this.player)){
-              this.player.HP=0
-              this.player.HPBar = {width: '0%'}
-              this.battleText = this.opponent.name + " used " + this.opponent.moves[random-1].name + "!" 
-              this.faintAnimation()
-              setTimeout(() => {this.battleText = this.player.name + " has fainted!"},2001)
-              setTimeout(() => {this.battleText = "Better luck next time!"},4000)
-              setTimeout(() => {this.battleText = "You took your pokecard and ran away!"},6000)
-          } else{
-              this.player.HPBar.width = percent + "%"
-              this.battleText = this.opponent.name + " used " + this.opponent.moves[random-1].name + "!"
-              setTimeout(() => { this.attacks = false, this.options = true, this.disabledOptions = false},2000)
-          }   
+          this.player.hp -=  realDamage
+          var percent=Math.round(this.player.hp/this.player.maxHP*100)
+      }          
+      if(this.Fainted(this.player)){
+          this.player.hp=0
+          this.player.HPBar = {width: '0%'}
+          this.battleText = this.opponent.name + " used " + this.opponent.moves[random-1].name + "!" 
+          setTimeout(() => {this.battleText = this.player.name + " has fainted!", this.faintAnimation()},2000)
+          
+      } else{
+          this.player.HPBar.width = percent + "%"
+          if(isNaN(opponentSkill)){
+             this.battleText = this.opponent.name + " used " + this.opponent.moves[random-1].name + "!"
+             if (opponentSkill=="ATK" && this.opmaxedATK || opponentSkill=="DEF" && this.opmaxedDEF || opponentSkill=="HP" && this.opmaxedHP ){
+                  setTimeout(() => {this.battleText = this.opponent.name + " can't increase his "+ skill+"anymore!"}, 2000)
+              } else{
+                setTimeout(() => {this.battleText = this.opponent.name + " increased his "+ opponentSkill+"!"},2000)
+              }    
+              setTimeout(() => { this.options = true, this.disabledOptions = false},4000)
+              setTimeout(() => {this.battleText = "What will " + this.player.name + " do?"},4000)    
+          }
+          else{
+            this.battleText = this.opponent.name + " used " + this.opponent.moves[random-1].name + "!"
+            setTimeout(() => {this.options = true, this.disabledOptions = false},2000)
+          }          
+      
+    } 
+          
+    },
+
         
-        },
     }
 }
 

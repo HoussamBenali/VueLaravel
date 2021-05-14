@@ -76,9 +76,9 @@
                     <div class="card cartaInfo" :style="cardColor(pokeInfo.rarity)">
                         <img class="card-img-top-info" :src=pokeInfo.image_path  alt="bulbasaur">
                             <span class="card-name-info">{{ pokeInfo.name }}</span>
-                            <span class="card-text-info">ATK: {{ pokeInfo.ATK }}</span>
-                            <span class="card-text-info">DEF: {{ pokeInfo.DEF }}</span>
-                            <span class="card-text-info">SPD: {{ pokeInfo.SPD }}</span>
+                            <span class="card-text-info">ATK: {{ pokeInfo.atk }}</span>
+                            <span class="card-text-info">DEF: {{ pokeInfo.def }}</span>
+                            <span class="card-text-info">SPD: {{ pokeInfo.spd}}</span>
                     </div>
                 </div>
             </div>
