@@ -56,10 +56,10 @@ class PokemonController extends ApiResponseController
         $image_path = $request->all()['image_path'];
         $pokemon = new Pokemon();
         $pokemon->name = $name;
-        $pokemon->HP = $HP;
-        $pokemon->ATK = $ATK;
-        $pokemon->DEF = $DEF;
-        $pokemon->SPD = $SPD;
+        $pokemon->hp = $HP;
+        $pokemon->atk = $ATK;
+        $pokemon->def = $DEF;
+        $pokemon->spd = $SPD;
         $pokemon->type = $type;
         $pokemon->moves = $moves;
         $pokemon->image_path= $image_path;
