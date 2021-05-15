@@ -140,10 +140,10 @@ export default {
 
                 await axios.post('api/pokemon',{
                     name:this.pokemons[x].name.charAt(0).toUpperCase()+ this.pokemons[x].name.slice(1),
-                    hp: this.pokemons[x].HP,
-                    atk: this.pokemons[x].ATK,
-                    def: this.pokemons[x].DEF,
-                    spd: this.pokemons[x].SPD,
+                    HP: this.pokemons[x].HP,
+                    ATK: this.pokemons[x].ATK,
+                    DEF: this.pokemons[x].DEF,
+                    SPD: this.pokemons[x].SPD,
                     type: this.pokemons[x].type.charAt(0).toUpperCase()+ this.pokemons[x].type.slice(1),
                     moves:list,
                     image_path: this.pokemons[x].image_path

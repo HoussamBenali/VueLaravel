@@ -47,10 +47,10 @@ class PokemonController extends ApiResponseController
         }
 
         $name = $request->all()['name'];
-        $HP = $request->all()['hp'];
-        $ATK = $request->all()['atk'];
-        $DEF = $request->all()['def'];
-        $SPD = $request->all()['spd'];
+        $HP = $request->all()['HP'];
+        $ATK = $request->all()['ATK'];
+        $DEF = $request->all()['DEF'];
+        $SPD = $request->all()['SPD'];
         $type = $request->all()['type'];
         $moves = serialize($array);
         $image_path = $request->all()['image_path'];
