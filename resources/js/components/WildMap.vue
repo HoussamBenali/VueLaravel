@@ -241,6 +241,8 @@ async setRewards(id){
       this.coins=10000
     }
 
+    console.log(this.coins, 'coins')
+    console.log(this.droppedPokemon, 'dropped')
     const info = await axios.post('api/setRewards/', {
         coins: this.coins,
         droppedPokemon: this.droppedPokemon
