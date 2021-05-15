@@ -44,7 +44,6 @@
 <script>
 import axios from 'axios';
 import Card from './Card';
-import store from '../store/store'
 import Vue from 'vue';
 
 export default {
@@ -89,18 +88,21 @@ export default {
 methods: {
 
         async getPokeData(){
-          
-                const resB = await axios.get('/api/pokemon/'+1)
+                console.log('getting')
+                const resB = await axios.get('/api/pokemon/1')
+                console.log('hello1---------------------')
+
                 let Bulbasaur = resB.data.data
                 Vue.set(Bulbasaur, "HPBar",  {width: '100%'})
                 Vue.set(Bulbasaur, "maxHP",  Bulbasaur.hp)
                 Vue.set(Bulbasaur, "HPlimit", Bulbasaur.hp*1.2)
                 Vue.set(Bulbasaur, "maxATK",  Bulbasaur.atk*1.2)
                 Vue.set(Bulbasaur, "maxDEF",  Bulbasaur.def*1.2)
+                console.log("Print bulbasur -------------")
                 console.log(Bulbasaur)
-                const resC= await axios.get('/api/pokemon/'+4)
+                const resC= await axios.get('/api/pokemon/4')
                 let Charmander = resC.data.data
-                console.log(Charmander)
+                
                 Vue.set(Charmander, "HPBar",  {width: '100%'})
                 Vue.set(Charmander, "maxHP",  Charmander.hp)
                 Vue.set(Charmander, "HPlimit", Charmander.hp*1.2)
@@ -114,11 +116,13 @@ methods: {
                 Vue.set(Squirtle, "HPlimit", Squirtle.hp*1.2)
                 Vue.set(Squirtle, "maxATK",  Squirtle.atk*1.2)
                 Vue.set(Squirtle, "maxDEF",  Squirtle.def*1.2)
-                
+          
 
           if (this.player.name == "Bulbasaur"){
                 this.player=Bulbasaur
+                console.log(Bulbasaur)
                 this.opponent = Charmander
+                console.log(Charmander)
 
           } else if (this.player.name == 'Charmander'){
                 this.player = Charmander
@@ -128,6 +132,9 @@ methods: {
                 this.player = Squirtle
                 this.opponent = Bulbasaur
             }
+          //console.log('hello2---------------------')
+          //console.log(this.player.moves)
+          //console.log('hello3---------------------')
       
         },
 
@@ -137,6 +144,7 @@ methods: {
           this.matchEnded = true;
           this.SetFirstPokemon(this.player.id);
           //console.log(store.getters.user)
+          setTimeout(() => {this.battleText = "You have no more cards left!"},6000)
           setTimeout(() => { this.$router.push('../home')},8000)
       },
 
@@ -145,7 +153,7 @@ methods: {
       },
       
       Fainted(poke){
-        if(poke.HP <= 0){
+        if(poke.hp <= 0){
             return true
         } else{
             return false
@@ -181,6 +189,8 @@ methods: {
         if (isNaN(skill)){
             if (skill=="ATK"){
               if(this.player.atk<this.player.maxATK){
+                //console.log(this.player.atk, 'atk player')
+                //console.log(this.player.maxATK, 'maxATK')
                 this.player.atk = this.player.atk*1.2
               } else{ this.maxedATK=true }
             } else if (skill=="DEF"){

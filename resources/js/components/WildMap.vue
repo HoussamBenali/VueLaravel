@@ -113,8 +113,9 @@ export default {
 mounted() {  
  
   this.MapBackground=  this.MapPath+this.map+ '.jpg';
+  this.getDeck()   
   this.getOpponent()
-  this.getDeck()        
+     
 },
 
 methods: {
@@ -122,13 +123,13 @@ methods: {
 async getDeck(){
   let Deck = await axios.post('/api/getDeck/')
   this.player.cards=Deck.data.length;
-  //console.log(Deck.data)
+  console.log(Deck.data)
   for (let i = 0; i < Deck.data.length; i++) {
     var pokemon=Deck.data[i]
     Vue.set(pokemon, "HPBar", {width: '100%'})
     Vue.set(pokemon, "id", i)
     Vue.set(pokemon, "maxHP",  Deck.data[i].hp)
-    Vue.set(pokemon, "HPlimit", Deck.data[i]*1.2)
+    Vue.set(pokemon, "HPlimit", Deck.data[i].hp*1.2)
     Vue.set(pokemon, "maxATK",  Deck.data[i].atk*1.2)
     Vue.set(pokemon, "maxDEF",  Deck.data[i].def*1.2)
     //Vue.set(pokemon, "maxSPD",  Deck.data[i].spd*1.5)
@@ -206,12 +207,12 @@ faintAnimation: function(){
         this.setRewards(this.opponent.poke.id)
         console.log(this.coins)
         if (this.droppedPokemon != null){
-           setTimeout(() => {this.battleText = "You have won "+this.coins+" PokeCoins and obtained "+this.opponent.poke.name},4000)
+           setTimeout(() => {this.battleText = "You have won "+this.coins+" PokeCoins and obtained "+this.opponent.poke.name},2000)
         }
         else{
-           setTimeout(() => {this.battleText = "You have won "+this.coins+" PokeCoins"},4000)
+           setTimeout(() => {this.battleText = "You have won "+this.coins+" PokeCoins"},2000)
         }      
-      setTimeout(() => { this.$router.push('../adventure')},6000)
+      setTimeout(() => { this.$router.push('../adventure')},4000)
   }
     else {
       this.forced=true
@@ -396,14 +397,18 @@ opponentAttack(){
       } else{
           this.player.current.HPBar.width = percent + "%"
           if(isNaN(opponentSkill)){
-             this.battleText = this.opponent.poke.name + " used " + this.opponent.poke.moves[random-1].name + "!"
+             
              if (opponentSkill=="ATK" && this.opmaxedATK || opponentSkill=="DEF" && this.opmaxedDEF || opponentSkill=="HP" && this.opmaxedHP ){
+                  this.battleText = this.opponent.poke.name + " used " + this.opponent.poke.moves[random-1].name + "!"
                   setTimeout(() => {this.battleText = this.opponent.poke.name + " can't increase his "+ skill+"anymore!"}, 2000)
+                  setTimeout(() => { this.options = true, this.disabledOptions = false},4000)
+                  setTimeout(() => {this.battleText = "What will " + this.player.current.name + " do?"},4000)  
               } else{
                 setTimeout(() => {this.battleText = this.opponent.poke.name + " increased his "+ opponentSkill+"!"},2000)
+                setTimeout(() => { this.options = true, this.disabledOptions = false},4000)
+                setTimeout(() => {this.battleText = "What will " + this.player.current.name + " do?"},4000)  
               }    
-              setTimeout(() => { this.options = true, this.disabledOptions = false},4000)
-              setTimeout(() => {this.battleText = "What will " + this.player.current.name + " do?"},4000)    
+              
           }
           else{
             this.battleText = this.opponent.poke.name + " used " + this.opponent.poke.moves[random-1].name + "!"
