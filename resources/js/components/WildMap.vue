@@ -121,7 +121,7 @@ mounted() {
 methods: {
 
 async getDeck(){
-  let Deck = await axios.post('api/getDeck')
+  let Deck = await axios.post('/api/getDeck')
   this.player.cards=Deck.data.length;
   console.log(Deck.data)
   for (let i = 0; i < Deck.data.length; i++) {
@@ -244,11 +244,11 @@ async setRewards(id){
     console.log(this.droppedPokemon, 'dropped')
     if (this.droppedPokemon==null){
       console.log('only coins')
-           await axios.post('api/setRewards/', {
+           await axios.post('/api/setRewards/', {
                  coins: this.coins})
 
     } else{
-        await axios.post('api/setRewards/', {
+        await axios.post('/api/setRewards/', {
             coins: this.coins,
             droppedPokemon: this.droppedPokemon
     })

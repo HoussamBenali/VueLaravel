@@ -46,6 +46,7 @@ Route::post('setPokemon/{id}',[App\Http\Controllers\UserController::class, 'setP
 Route::post('/reset/{token}', [App\Http\Controllers\ForgotController::class, 'reset'])->name('reset');
 
 Route::post('forgot', [App\Http\Controllers\ForgotController::class, 'forgot'])->name('forgot');
+
 Route::post('register', [App\Http\Controllers\api\RegisterController::class,'store']);
 
 Route::get('getAvatar',[App\Http\Controllers\api\AvatarController::class,'get']);

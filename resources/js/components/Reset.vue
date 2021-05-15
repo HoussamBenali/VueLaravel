@@ -60,15 +60,18 @@ export default {
     },
   methods: {
     async Reset(){
-      const response = await axios.post('reset',{
+      const res= await axios.post('/api/reset/'+this.$route.params.token,{
             password: this.$v.form.$model.password,
             password_confirm: this.$v.form.$model.rpassword,
             token:this.$route.params.token,
             });
 
-            if (response.status ==200)
-                console.log('Success');
-                this.$router.push('/login');
+            if (res.status ==200){
+                  console.log('Success');
+            }
+
+            this.$router.push('login');
+                
 
         
       
