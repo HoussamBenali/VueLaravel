@@ -78,6 +78,8 @@ class PokemonController extends ApiResponseController
         // return "hola";
         $pokemon = Pokemon::where('id',$id)->first();
         $pokemon->moves= unserialize($pokemon->moves);
+        dd($pokemon);
+
         $moves=$pokemon->moves;
 
         $strjson = '[';
