@@ -68,7 +68,7 @@ export default {
     },
   methods: {
     async Reset(){
-      const res = await axios.post('reset',{
+      const res = await axios.post('/api/reset',{
             password: this.$v.form.$model.password,
             password_confirm: this.$v.form.$model.rpassword,
             token:this.$route.params.token,
