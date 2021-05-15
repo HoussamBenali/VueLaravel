@@ -28,7 +28,7 @@
 import axios from 'axios';
 import Error from './Error';
 import { required, email } from 'vuelidate/lib/validators';
-import BaseInput from "../components/BaseInput.vue";
+import BaseInput from "./BaseInput.vue";
 
 export default {
    name: 'Forgot',

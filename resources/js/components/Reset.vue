@@ -8,7 +8,7 @@
             </div>
             <Error v-if="error" :error="error"></Error>
           </div>
-        <h2><b>Reset</b></h2>
+        <h2><b>Reset:</b></h2>
         <hr>
         <div class="form-group">
             <BaseInput label="Password:" 
@@ -26,7 +26,7 @@
             ></BaseInput>
         </div>
     
-        <button type="submit" class="registerbtn">Reset</button>
+        <button type="submit" class="mybtn">Reset</button>
 
     </form>
 
@@ -38,21 +38,22 @@
 import axios from 'axios';
 import Error from './Error';
 import { required, minLength, sameAs} from 'vuelidate/lib/validators';
-import BaseInput from "../components/BaseInput.vue";
+import BaseInput from "./BaseInput.vue";
 
 export default {
   name: 'Reset',
   components:{
-    BaseInput, Error
+    BaseInput, 
+    Error
   },
   data(){
     return{
       form:{
       password: '',
       rpassword:'',
+      },
       message: null,
       error: null,
-      }
     }
   },
   validations: {
@@ -74,6 +75,7 @@ export default {
             password_confirm: this.$v.form.$model.rpassword,
             token:this.$route.params.token,
             });
+
             console.log(res.data.message)
             if (res.data.message=="Success"){
                   console.log('Success')
