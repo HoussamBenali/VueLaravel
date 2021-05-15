@@ -58,8 +58,8 @@ export default {
      async Forgot(){
        try {
           const res=await axios.post('forgot',{ email: this.$v.form.$model.email });
-          console.log(res.data.data)
-          if (res.data.data.message){
+          console.log(res.data)
+          if (res.data.message){
             this.error="The user doesn't exist";
             this.message=''; 
           } else{
@@ -67,12 +67,11 @@ export default {
             this.error='';
           }
          
-
         } catch (error) {
           //this.error = 'The email must be a valid email address'
-          this.error='Error ocurred';
-          console.log(error)
+          this.error="The user doesn't exist";
           this.message=''; 
+          console.log(error)
        }
      }   
    }
