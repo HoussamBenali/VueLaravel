@@ -243,7 +243,7 @@ async setRewards(id){
 
     console.log(this.coins, 'coins')
     console.log(this.droppedPokemon, 'dropped')
-    const info = await axios.post('api/setRewards/', {
+    await axios.post('https://poke-vue-laravel.herokuapp.com/api/setRewards/', {
         coins: this.coins,
         droppedPokemon: this.droppedPokemon
     })
