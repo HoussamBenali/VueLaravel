@@ -80,7 +80,7 @@ export default new Vuex.Store({
         async getUser({ commit }) { // commit => sirve para ejecutar una mutacion
             const requestOne = axios.get("/api/user");
             if(requestOne){
-                const requestTwo = axios.get("api/pokesUser");
+                const requestTwo = axios.get("/api/pokesUser");
              
                 axios.all([requestOne, requestTwo]).then(axios.spread((...responses) => {
                 const responseOne = responses[0]

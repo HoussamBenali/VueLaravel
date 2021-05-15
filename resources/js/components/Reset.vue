@@ -38,11 +38,12 @@
 import axios from 'axios';
 import { required, minLength, sameAs} from 'vuelidate/lib/validators';
 import BaseInput from "../components/BaseInput.vue";
+import Error from './Error';
 
 export default {
   name: 'Reset',
   components:{
-    BaseInput
+    BaseInput, Error
   },
   data(){
     return{
@@ -73,12 +74,13 @@ export default {
             password_confirm: this.$v.form.$model.rpassword,
             token:this.$route.params.token,
             });
-
+            console.log(res)
             if (res.status ==200){
-                  console.log('Success');
-                  this.message='The password has been reset!';
-                  this.error='';
-                  return this.$router.push('login');
+                  console.log('Success')
+                  this.message='The password has been reset!'
+                  console.log(this.message)
+                  this.error=''
+                  this.$router.push('login')
             } else {
                this.message='';
                this.error='there was an error';
