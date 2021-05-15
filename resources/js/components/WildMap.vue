@@ -62,6 +62,7 @@
 import Card from './Card';
 import Vue from 'vue';
 import axios from 'axios';
+axios.defaults.baseURL = 'https://poke-vue-laravel.herokuapp.com/';
 import user from '../store/store'
 
 
@@ -121,7 +122,7 @@ mounted() {
 methods: {
 
 async getDeck(){
-  let Deck = await axios.post('/api/getDeck/')
+  let Deck = await axios.post('/api/getDeck')
   this.player.cards=Deck.data.length;
   console.log(Deck.data)
   for (let i = 0; i < Deck.data.length; i++) {
