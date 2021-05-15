@@ -18,7 +18,7 @@ export default {
     data() {
         return {
           choose: false,
-          route:'../../../storage/'
+          route:'../../../public/storage/'
         }
     },
     props:{
