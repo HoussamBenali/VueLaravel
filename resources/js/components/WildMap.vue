@@ -244,11 +244,11 @@ async setRewards(id){
     console.log(this.droppedPokemon, 'dropped')
     if (this.droppedPokemon==null){
       console.log('only coins')
-           await axios.post('/api/setRewards', {
+           await axios.post('../api/setRewards', {
                  coins: this.coins})
 
     } else{
-        await axios.post('/api/setRewards', {
+        await axios.post('../api/setRewards', {
             coins: this.coins,
             droppedPokemon: this.droppedPokemon
     })
