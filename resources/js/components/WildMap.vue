@@ -62,7 +62,6 @@
 import Card from './Card';
 import Vue from 'vue';
 import axios from 'axios';
-axios.defaults.baseURL = 'https://poke-vue-laravel.herokuapp.com/';
 import user from '../store/store'
 
 
@@ -243,10 +242,18 @@ async setRewards(id){
 
     console.log(this.coins, 'coins')
     console.log(this.droppedPokemon, 'dropped')
-    await axios.post('/api/setRewards/', {
-        coins: this.coins,
-        droppedPokemon: this.droppedPokemon
+    if (this.droppedPokemon==null){
+      console.log('only coins')
+           await axios.post('/api/setRewards/', {
+                 coins: this.coins})
+
+    } else{
+        await axios.post('/api/setRewards/', {
+            coins: this.coins,
+            droppedPokemon: this.droppedPokemon
     })
+    }
+   
 
     //user.dispatch('getUser');
 

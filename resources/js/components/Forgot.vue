@@ -57,8 +57,8 @@ export default {
    methods: {
      async Forgot(){
        try {
-          await axios.post('forgot',{ email: this.$v.form.$model.email });
-
+          const res=await axios.post('forgot',{ email: this.$v.form.$model.email });
+          console.log(res)
           this.message='The email was sent!';
           this.error='';
 
