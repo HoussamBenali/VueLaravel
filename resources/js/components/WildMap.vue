@@ -10,7 +10,7 @@
     <div class="tutorial-card-player">
         <Card :HP="player.current.hp"  :maxHP="player.current.maxHP" :Name="player.current.name" :ATK="player.current.atk" :DEF="player.current.def" 
         :SPD="player.current.spd" :Type="player.current.type" :Level="player.current.level" :HPBar="player.current.HPBar"
-        :Player="player.curr" :Img="player.current.image_path" :Rarity="player.current.rarity"></Card>
+        :Player="player.current" :Img="player.current.image_path" :Rarity="player.current.rarity"></Card>
     </div>
   <div class="bottom-menu">
         <div class="battle-text text-box-left">

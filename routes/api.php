@@ -30,7 +30,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
  //UPDATE PRICE_POKEMONS
-Route::get('user/pricePoke', [App\Http\Controllers\UserController::class,'pricePoke']);
+//Route::get('user/pricePoke', [App\Http\Controllers\UserController::class,'pricePoke']);
 Route::resource('pokemon', App\Http\Controllers\api\PokemonController::class)->only(['index','show','store'])->middleware('auth:sanctum');
 Route::post('user/restarPrice', [App\Http\Controllers\UserController::class,'restar_price']);
 Route::post('user/sumarPrice', [App\Http\Controllers\UserController::class,'sumar_price']);
