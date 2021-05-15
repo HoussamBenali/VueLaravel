@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../css/styles.css";
+@import "../../../public/css/styles.css";
 
   #home{
   background-color: #f6f7c7;

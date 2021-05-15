@@ -138,7 +138,6 @@ export default {
 </script>
 
 <style lang="css">
-@import "../../css/cards.css";
 .im-flipped {
     transform: rotateY(180deg);
 }

@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  @import "../../css/styles.css";
+@import "../../../public/css/styles.css";
 
 #forgot{
   background-color: #f6f7c7;

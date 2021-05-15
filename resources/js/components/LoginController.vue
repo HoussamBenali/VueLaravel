@@ -76,7 +76,7 @@ export default {
 </script>
 <style lang="scss">
 	@import '~vue-awesome-notifications/dist/styles/style.scss';
-	@import "../../css/styles.css";
+	@import "../../../public/css/styles.css";
 
 </style>
 
