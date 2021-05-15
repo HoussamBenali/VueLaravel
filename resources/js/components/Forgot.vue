@@ -59,7 +59,7 @@ export default {
        try {
           const res=await axios.post('forgot',{ email: this.$v.form.$model.email });
           console.log(res.data)
-          if (res.data.message){
+          if (res.data.token){
             this.error="The user doesn't exist";
             this.message=''; 
           } else{
