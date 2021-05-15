@@ -97,8 +97,10 @@ methods: {
                 Vue.set(Bulbasaur, "HPlimit", Bulbasaur.hp*1.2)
                 Vue.set(Bulbasaur, "maxATK",  Bulbasaur.atk*1.2)
                 Vue.set(Bulbasaur, "maxDEF",  Bulbasaur.def*1.2)
+                console.log(Bulbasaur)
                 const resC= await axios.get('/api/pokemon/'+4)
                 let Charmander = resC.data.data
+                console.log(Charmander)
                 Vue.set(Charmander, "HPBar",  {width: '100%'})
                 Vue.set(Charmander, "maxHP",  Charmander.hp)
                 Vue.set(Charmander, "HPlimit", Charmander.hp*1.2)
@@ -106,14 +108,13 @@ methods: {
                 Vue.set(Charmander, "maxDEF",  Charmander.def*1.2)
                 const resS = await axios.get('/api/pokemon/'+7)
                 let Squirtle = resS.data.data
+                console.log(Squirtle)
                 Vue.set(Squirtle, "HPBar",  {width: '100%'})
                 Vue.set(Squirtle, "maxHP",  Squirtle.hp)
                 Vue.set(Squirtle, "HPlimit", Squirtle.hp*1.2)
                 Vue.set(Squirtle, "maxATK",  Squirtle.atk*1.2)
                 Vue.set(Squirtle, "maxDEF",  Squirtle.def*1.2)
-                console.log(Bulbasaur)
-                console.log(Squirtle)
-                console.log(Charmander)
+                
 
           if (this.player.name == "Bulbasaur"){
                 this.player=Bulbasaur
