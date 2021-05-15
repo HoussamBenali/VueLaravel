@@ -2,6 +2,12 @@
 <div id="reset">
   <div class="container0">
     <form @submit.prevent="Reset">
+      <div class="messageOrerror">
+        <div v-if="message" class="alert alert-success" role="alert">
+          {{message}}
+        </div>
+            <Error v-if="error" :error="error"></Error>
+        </div>
         <h2><b>Reset</b></h2>
         <hr>
         <div class="form-group">
@@ -43,6 +49,8 @@ export default {
       form:{
       password: '',
       rpassword:'',
+      message: null,
+      error: null,
       }
     }
   },
@@ -60,7 +68,7 @@ export default {
     },
   methods: {
     async Reset(){
-      const res= await axios.post('/api/reset/'+this.$route.params.token,{
+      const res = await axios.post('reset',{
             password: this.$v.form.$model.password,
             password_confirm: this.$v.form.$model.rpassword,
             token:this.$route.params.token,
@@ -68,9 +76,15 @@ export default {
 
             if (res.status ==200){
                   console.log('Success');
+                  this.message='The password has been reset!';
+                  this.error='';
+                  return this.$router.push('login');
+            } else {
+               this.message='';
+               this.error='there was an error';
             }
 
-            this.$router.push('login');
+            
                 
 
         
