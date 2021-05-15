@@ -62,7 +62,7 @@
 import Card from './Card';
 import Vue from 'vue';
 import axios from 'axios';
-axios.defaults.baseURL = 'https://poke-vue-laravel.herokuapp.com/';
+//axios.defaults.baseURL = 'https://poke-vue-laravel.herokuapp.com/';
 import user from '../store/store'
 
 
