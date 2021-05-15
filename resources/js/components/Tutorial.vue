@@ -149,7 +149,7 @@ methods: {
       },
 
       async SetFirstPokemon(id){
-        await axios.post('api/setPokemon/'+id)  
+        await axios.post('/api/setPokemon/'+id)  
         console.log('added')    
       },
       

@@ -2,12 +2,12 @@
 <div id="reset">
   <div class="container0">
     <form @submit.prevent="Reset">
-      <div class="messageOrerror">
-        <div v-if="message" class="alert alert-success" role="alert">
-          {{message}}
-        </div>
+     <div class="messageOrerror">
+            <div v-if="message" class="alert alert-success" role="alert">
+              {{message}}
+            </div>
             <Error v-if="error" :error="error"></Error>
-        </div>
+          </div>
         <h2><b>Reset</b></h2>
         <hr>
         <div class="form-group">
@@ -36,9 +36,9 @@
 
 <script>
 import axios from 'axios';
+import Error from './Error';
 import { required, minLength, sameAs} from 'vuelidate/lib/validators';
 import BaseInput from "../components/BaseInput.vue";
-import Error from './Error';
 
 export default {
   name: 'Reset',
@@ -74,23 +74,16 @@ export default {
             password_confirm: this.$v.form.$model.rpassword,
             token:this.$route.params.token,
             });
-            console.log(res)
-            if (res.status ==200){
+            console.log(res.data.message)
+            if (res.data.message=="Success"){
                   console.log('Success')
-                  this.message='The password has been reset!'
+                  this.message="The password has been reset!";
+                  this.error='';
                   console.log(this.message)
-                  this.error=''
-                  this.$router.push('login')
             } else {
                this.message='';
-               this.error='there was an error';
-            }
-
-            
-                
-
-        
-      
+               this.error='There was an error';
+            }     
     },
 
   },
