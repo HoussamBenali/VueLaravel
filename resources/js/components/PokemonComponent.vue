@@ -151,10 +151,10 @@ import user from '../store/store'
                 console.log(this.pokeInfo)
             },
             async addPokemon (pokemon) { // todo lo que usemos en la vista hay que retornarlo
-                await axios.post('api/cart/addpoke',{
+                await axios.post('/api/cart/addpoke',{
                     id_poke:pokemon.id
                 })
-                await axios.post('api/user/restarPrice',{
+                await axios.post('/api/user/restarPrice',{
                     price:pokemon.price
                 })
                 // .then((res) => {

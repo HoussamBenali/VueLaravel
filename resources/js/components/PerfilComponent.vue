@@ -11,7 +11,7 @@
                                 <div class="dropdown">
                                     <div>
                                         <img
-                                            :src="'api/getAvatar'"
+                                            :src="'/api/getAvatar'"
                                             style="max-width: 100px; max-height: 100px; min-width: 100px; min-height: 100px"
                                         />
                                         <div class="cuadro_perfil">
