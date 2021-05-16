@@ -206,7 +206,7 @@ export default {
             }
             let formData = new FormData();
             formData.append('image', this.image);
-            axios.post('api/updateAvatar', formData, config)
+            axios.post('/api/updateAvatar', formData, config)
                 .then(function (response) {
                     currentObj.success = response.data.success;
                     console.log(currentObj.success)
