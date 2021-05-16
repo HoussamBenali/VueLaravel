@@ -14,7 +14,7 @@
 <div class="chooseOne">
   <div class="center">
 
-    <router-link class="router" to="tutorial/Bulbasaur">
+    <router-link class="router" to="/tutorial/Bulbasaur">
     <div @click="Bulbasaur" class="card starting carta">
       <img class="card-img-top" :src="CardsPath +'Bulbasaur.png'" alt="bulbasaur">
       <span class="card-name">Bulbasaur</span>
@@ -24,7 +24,7 @@
     </div>
     </router-link>
 
-    <router-link class="router" to="tutorial/Charmander">
+    <router-link class="router" to="/tutorial/Charmander">
     <div @click="Charmander" class="card starting carta">
       <img class="card-img-top" :src="CardsPath +'Charmander.png'" alt="charmander">
       <span class="card-name"><img class="types-icon" :src="IconsPath+'Fire.png'" /> 
@@ -36,7 +36,7 @@
     </div>
     </router-link>
     
-    <router-link class="router" to="tutorial/Squirtle">
+    <router-link class="router" to="/tutorial/Squirtle">
     <div @click="Squirtle" class="card starting carta">
       <img class="card-img-top" :src="CardsPath +'Squirtle.png'" alt="squirtle">
       <span class="card-name">Squirtle</span>
