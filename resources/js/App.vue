@@ -3,7 +3,7 @@
  
     <div class="header">
       <!--<Nav></Nav>-->
-      <Nav v-if="['login', 'register', 'forgot', 'reset', 'home', 'base', 'adventure', 'profile','shop'].includes($route.name)"></Nav>
+      <Nav v-if="['login', 'register', 'forgot', 'reset', 'home', 'base', 'adventure', 'profile','shop','tutorialhome'].includes($route.name)"></Nav>
     </div>
     <div class="main">
       <router-view/>

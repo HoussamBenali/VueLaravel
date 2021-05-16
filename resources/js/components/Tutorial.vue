@@ -144,8 +144,8 @@ methods: {
           this.matchEnded = true;
           this.SetFirstPokemon(this.player.id);
           console.log(this.player.id, 'setRewards')
-          setTimeout(() => {this.battleText = "You have no more cards left!"},2000)
-          setTimeout(() => { this.$router.go('home')},4000)
+          setTimeout(() => {this.battleText = "You have no more cards left!"},1000)
+          setTimeout(() => { this.$router.push('home')},3000)
       },
 
       async SetFirstPokemon(id){

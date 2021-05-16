@@ -34,6 +34,7 @@ const router = new VueRouter({
         { path: '/reset/:token', name: 'reset', component: Reset,  meta: { requiresVisitor: true }},
         { path: '/starting',  name: 'starting', component: Comienzo, meta: { requiresAuth: true, requiresNoPokemon: true } },
         { path: '/tutorial/:pokemon',  name: 'tutorial', component: Tutorial, meta: { requiresAuth: true, requiresNoPokemon: true } },
+        { path: '/tutorial/home',  name: 'tutorialhome', component: Home, meta: { requiresAuth: true } },
         { path: '/adventure', name: 'adventure', component: Adventure,  meta: { requiresAuth: true }},
         { path: '/wildMap/:area', name: 'wildMap', component: WildMap,  meta: { requiresAuth: true } },
         { path: '/profile', name: 'profile', component: Perfil,  meta: { requiresAuth: true } },
