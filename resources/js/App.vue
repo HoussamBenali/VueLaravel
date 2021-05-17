@@ -18,7 +18,6 @@ import Nav from './components/Nav';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 
-
 export default {
   name: 'index',
   components: {
