@@ -56,7 +56,7 @@ export default {
 			
           	await this.$store.dispatch('login',this.form)
 			console.log(this.email)
-			console.log(this.email.toLowerCase())
+			
           	const res = await axios.post('login',{
           	email: this.email,
           	password: this.password,
