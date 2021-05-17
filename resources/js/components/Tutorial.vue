@@ -116,7 +116,6 @@ methods: {
                 Vue.set(Squirtle, "HPlimit", Squirtle.hp*1.2)
                 Vue.set(Squirtle, "maxATK",  Squirtle.atk*1.2)
                 Vue.set(Squirtle, "maxDEF",  Squirtle.def*1.2)
-          
 
           if (this.player.name == "Bulbasaur"){
                 this.player=Bulbasaur
@@ -132,10 +131,7 @@ methods: {
                 this.player = Squirtle
                 this.opponent = Bulbasaur
             }
-          //console.log('hello2---------------------')
-          //console.log(this.player.moves)
-          //console.log('hello3---------------------')
-      
+
         },
 
         faintAnimation(){

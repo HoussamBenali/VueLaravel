@@ -16,11 +16,12 @@
 
     <router-link class="router" to="/tutorial/Bulbasaur">
     <div @click="Bulbasaur" class="card starting carta">
-      <img class="card-img-top" :src="CardsPath +'Bulbasaur.png'" alt="bulbasaur">
-      <span class="card-name">Bulbasaur</span>
-      <span class="card-text">ATK: 40</span>
-      <span class="card-text">DEF: 35</span>
-      <span class="card-attack">SPD: 5</span>
+      <img class="card-img-top" :src="Bulbasaur.image_path" alt="bulbasaur">
+      <span class="card-name">{{Bulbasaur.name}}</span>
+      <span class="card-text">HP: {{Bulbasaur.hp}}</span>
+      <span class="card-text">ATK: {{Bulbasaur.atk}}</span>
+      <span class="card-text">DEF: {{Bulbasaur.def}}</span>
+      <span class="card-attack">SPD: {{Bulbasaur.spd}}</span>
     </div>
     </router-link>
 
@@ -79,6 +80,20 @@ export default {
     }
   },
   methods:{
+    async getPokeData(){
+                const resB = await axios.get('/api/pokemon/1')
+                let Bulbasaur = resB.data.data
+                console.log("Print bulbasur -------------")
+                console.log(Bulbasaur)
+
+                const resC= await axios.get('/api/pokemon/4')
+                let Charmander = resC.data.data
+              
+                const resS = await axios.get('/api/pokemon/'+7)
+                let Squirtle = resS.data.data
+                console.log(Squirtle)
+    },
+
     Charmander(){
       return this.pokemon = 'Charmander'
     },
