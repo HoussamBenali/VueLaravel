@@ -5,7 +5,7 @@
   <img class="hi" alt="Pokelogo" src="/images/pokelogo.png" width="60" height="60">
   
   <router-link to="" class="link">
-    <h5 class="title"><b>PokeCards</b></h5>
+    <h5 class="title"><b>PokeCards Online</b></h5>
   </router-link>
 
     <b-navbar-toggle class="color" target="nav-collapse"/>
