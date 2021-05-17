@@ -53,9 +53,12 @@ export default {
 	methods: {
     	async login () {
         	try{
+			
           	await this.$store.dispatch('login',this.form)
+			console.log(this.email)
+			console.log(this.email.toLowerCase())
           	const res = await axios.post('login',{
-          	email: this.email.toLowerCase(),
+          	email: this.email,
           	password: this.password,
         	})
           	this.$awn.success("Bienvenido")

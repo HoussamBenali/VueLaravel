@@ -74,6 +74,7 @@ export default new Vuex.Store({
 
         async logout ({ dispatch }) {
             await axios.post('logout')
+            localStorage.removeItem("who")
             return dispatch("getUser") // dispatch => ejecutar una accion
         },
 
