@@ -27,10 +27,10 @@
 
     <router-link class="router" to="/tutorial/Charmander">
     <div @click="isCharmander" class="card starting carta">
-      <img class="card-img-top" :src="CardsPath +'Charmander.png'" alt="charmander">
+      <img class="card-img-top" :src="Charmander.image_path" alt="charmander">
       <span class="card-name"><img class="types-icon" :src="IconsPath+'Fire.png'" /> 
        Charmander 
-      <img class="types-icon" :src="Charmander.image_path" /></span>
+     <img class="types-icon" :src="IconsPath+'Fire.png'" /> </span>
       <span class="card-text">HP: {{Charmander.hp}}</span>
       <span class="card-text">ATK: {{Charmander.atk}}</span>
       <span class="card-text">DEF: {{Charmander.def}}</span>
@@ -40,7 +40,7 @@
     
     <router-link class="router" to="/tutorial/Squirtle">
     <div @click="isSquirtle" class="card starting carta">
-      <img class="card-img-top" :src="Squirte.image_path" alt="squirtle">
+      <img class="card-img-top" :src="Squirtle.image_path" alt="squirtle">
       <span class="card-text">HP: {{Squirte.hp}}</span>
       <span class="card-text">ATK: {{Squirte.atk}}</span>
       <span class="card-text">DEF: {{Squirte.def}}</span>
@@ -84,12 +84,15 @@ export default {
     }
   },
   mounted(){
-    this.getPokeData
+    this.getPokeData()
   },
   methods:{
     async getPokeData(){
                 const resB = await axios.get('/api/pokemon/1')
+                console.log(resB)
+                console.log(resB.data)
                 this.Bulbasaur = resB.data.data
+                console.log(this.Bulbasaur)
 
                 const resC= await axios.get('/api/pokemon/4')
                 this.Charmander = resC.data.data
