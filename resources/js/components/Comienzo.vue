@@ -41,6 +41,7 @@
     <router-link class="router" to="/tutorial/Squirtle">
     <div @click="isSquirtle" class="card starting carta">
       <img class="card-img-top" :src="Squirtle.image_path" alt="squirtle">
+      <span class="card-name">{{Squirtle.name}}</span>
       <span class="card-text">HP: {{Squirtle.hp}}</span>
       <span class="card-text">ATK: {{Squirtle.atk}}</span>
       <span class="card-text">DEF: {{Squirtle.def}}</span>
@@ -79,7 +80,6 @@ export default {
       Bulbasaur:'',
       Charmander:'',
       Squirtle:'',
-      CardsPath: " https://raw.githubusercontent.com/HoussamBenali/Assets/b09577915f44df2007555b8f23d58850cf26b696/images/Cartas/",
       IconsPath: "https://raw.githubusercontent.com/HoussamBenali/Assets/b09577915f44df2007555b8f23d58850cf26b696/images/Types/",
     }
   },
@@ -129,7 +129,7 @@ export default {
 
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "../../css/cards.css";
 @import "../../css/cardsMobile.css";
 
@@ -151,6 +151,21 @@ export default {
 .router:hover{
 
   text-decoration: none;
+}
+
+.carta{
+    min-width: 120px;
+    max-width: 150px;
+    width: 10vw;
+    height: 220px;
+    font-size: 40px;
+    background: linear-gradient( to top left, rgb(77, 76, 76), white, rgb(90, 90, 90));
+    background-size:300% 300%;
+    margin: 0vw;
+    border-radius: 5px;
+    border: solid black 2px !important;
+    animation: reflect 3s infinite linear;
+    /*animation-direction: alternate;*/
 }
 
 
