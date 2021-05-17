@@ -318,3 +318,11 @@ opponentAttack(){
 
 </script>
 
+
+<style scoped lang="css">
+@import "../../css/tutorial.css";
+@import "../../css/tutorialMobile.css";
+
+
+</style>
+

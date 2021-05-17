@@ -73,7 +73,6 @@ import BaulComponent from './BaulComponent';
 
 <style scoped lang="scss">
 
-
 .tienda{
     display: flex;
     
