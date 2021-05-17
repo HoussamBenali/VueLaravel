@@ -67,9 +67,9 @@ export default {
   },
   name: 'navigator',
   methods:{
-    async Logout(){
-        await this.$store.dispatch("logout")
+     Logout(){
         localStorage.removeItem('who');
+        this.$store.dispatch("logout")  
         return this.$router.push('/login')
       
         
