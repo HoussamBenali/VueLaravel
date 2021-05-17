@@ -318,9 +318,3 @@ opponentAttack(){
 
 </script>
 
-<style scoped lang="css">
-
-@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow');
-
-</style>
