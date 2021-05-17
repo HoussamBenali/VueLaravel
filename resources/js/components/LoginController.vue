@@ -51,22 +51,19 @@ export default {
     	credentials: ""
 	}),
 	methods: {
-    	async login () {
+    async login () {
         	try{
           	await this.$store.dispatch('login',this.form)
-			this.form.email=this.form.email.toLowerCase()
-          	const res = await axios.post('login',{
-          	email: this.form.email,
-          	password: this.form.password,
-        	})
+			const res =await axios.get('/api/pokesUser')
           	this.$awn.success("Bienvenido")
-          	//console.log(res.data.pokemons)
-          	if (res.data.pokemons == null){
+			console.log(res.data)
+			var pokes = res.data
+          	if (pokes.length<1){
             	return this.$router.push('starting');
           	} else{
             	return this.$router.push('home');
           	}
-     	 
+			
         	}catch{
             	this.$awn.warning("Credenciales invalidas")
             	this.credentials="Credenciales invalidas"
