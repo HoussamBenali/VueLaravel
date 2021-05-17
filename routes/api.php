@@ -44,7 +44,9 @@ Route::post('setRewards',[App\Http\Controllers\UserController::class, 'setReward
 Route::post('getDeck',[App\Http\Controllers\UserController::class, 'getDeck'])->name('getDeck');
 Route::post('setPokemon/{id}',[App\Http\Controllers\UserController::class, 'setPokemon'])->name('setPokemon');
 Route::post('/reset/{token}', [App\Http\Controllers\ForgotController::class, 'reset'])->name('reset');
-
+Route::post('/updateNick', [App\Http\Controllers\api\ChangeController::class, 'updateNick'])->name('updateNick');
+Route::post('/updateEmail', [App\Http\Controllers\api\ChangeController::class, 'updateEmail'])->name('updateEmail');
+Route::post('/changePass', [App\Http\Controllers\api\ChangeController::class, 'reset'])->name('changePass');
 Route::post('forgot', [App\Http\Controllers\ForgotController::class, 'forgot'])->name('forgot');
 
 Route::post('register', [App\Http\Controllers\api\RegisterController::class,'store']);

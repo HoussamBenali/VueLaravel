@@ -253,10 +253,7 @@ async setRewards(id){
             droppedPokemon: this.droppedPokemon
     })
     }
-   
-
-    //user.dispatch('getUser');
-
+  
     return user.dispatch('getUser');
 
 },

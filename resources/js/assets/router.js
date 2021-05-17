@@ -14,6 +14,8 @@ import Adventure from '../components/Adventure';
 import WildMap from '../components/WildMap';
 import getPokemons from '../components/GetPokemons';
 import Perfil from '../components/PerfilComponent';
+import ChangePass from '../components/ChangePass';
+import ChangeProfile from '../components/ChangeProfile';
 import Shop from '../components/TiendaPokeComponent';
 
 Vue.use(VueRouter)
@@ -28,18 +30,19 @@ const router = new VueRouter({
 
         { path: '/register', component:  RegistroComponent, name: 'register', meta: { requiresVisitor: true }},
         { path: '/login', component:  LoginController , name: 'login', meta: { requiresVisitor: true }},
-        { path: '/', name: 'base', component: () => import(/* webpackChunkName: "Raiz" */"../components/Home.vue")},
-       
+        { path: '/', name: 'base', component: () => import(/* webpackChunkName: "Raiz" */"../components/Home.vue")},  
+        { path: '/tutorial/:pokemon',  name: 'tutorial', component: Tutorial, meta: { requiresAuth: true, requiresNoPokemon: true } },
+        { path: '/home', name: 'home', component: Home , meta: { requiresAuth: true }},    
         { path: '/forgot', name: 'forgot',  component: Forgot , meta: { requiresVisitor: true }},
         { path: '/reset/:token', name: 'reset', component: Reset,  meta: { requiresVisitor: true }},
-        { path: '/starting',  name: 'starting', component: Comienzo, meta: { requiresAuth: true, requiresNoPokemon: true } },
-        //{ path: '/tutorial/home',  name: 'tutorialhome', component: Home, meta: { requiresAuth: true } },
-        { path: '/tutorial/:pokemon',  name: 'tutorial', component: Tutorial, meta: { requiresAuth: true, requiresNoPokemon: true } },
-        { path: '/home', name: 'home', component: Home , meta: { requiresAuth: true }},
+        { path: '/changePass', name: 'changePass', component: ChangePass,  meta: { requiresAuth: true }},
+        { path: '/changeProfile', name: 'changeProfile', component: ChangeProfile,  meta: { requiresAuth: true }},
+        { path: '/starting',  name: 'starting', component: Comienzo, meta: { requiresAuth: true, requiresNoPokemon: true } },      
         { path: '/adventure', name: 'adventure', component: Adventure,  meta: { requiresAuth: true }},
         { path: '/wildMap/:area', name: 'wildMap', component: WildMap,  meta: { requiresAuth: true } },
         { path: '/profile', name: 'profile', component: Perfil,  meta: { requiresAuth: true } },
         { path: '/shop', name: 'shop', component: Shop,  meta: { requiresAuth: true } },
+       
         //solo usar path pokemons cuando se quiera obtener datos de la api externa y guardarlos en la DDBB
         //{ path: '/pokemons', name: 'pokemons', component:getPokemons,  meta: { requiresAuth: true } },
         { path: '*', name: 'error', component: () => import(/* webpackChunkName: "Error" */"../components/Error.vue")},

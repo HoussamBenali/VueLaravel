@@ -4,13 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Validator;
-class StoreRegisterController extends FormRequest
+class RequestEmail extends FormRequest
 {
     public static function myRules () {
         return [
-            'nick' => 'required|min:3|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
         ];
     }
 

@@ -29,6 +29,9 @@ Route::get('/wildMap/{area}', [App\Http\Controllers\HomeController::class, 'inde
 Route::get('/pokemons', [App\Http\Controllers\web\WebController::class, 'index'])->name('pokemons');
 Route::get('/profile', [App\Http\Controllers\web\WebController::class, 'index'])->name('profile');
 Route::get('/shop', [App\Http\Controllers\web\WebController::class, 'index'])->name('shop');
+Route::get('/changePass', [App\Http\Controllers\web\WebController::class, 'index'])->name('changePass');
+Route::get('/changeProfile', [App\Http\Controllers\web\WebController::class, 'index'])->name('changeProfile');
+Route::get('/shop', [App\Http\Controllers\web\WebController::class, 'index'])->name('shop');
 
 Auth::routes();
 

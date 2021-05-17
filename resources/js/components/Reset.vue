@@ -45,6 +45,7 @@ export default {
   components:{
     BaseInput, 
     Error
+    
   },
   data(){
     return{

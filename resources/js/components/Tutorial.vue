@@ -146,11 +146,14 @@ methods: {
           console.log(this.player.id, 'setRewards')
           setTimeout(() => {this.battleText = "You have no more cards left!"},2000)
           setTimeout(() => { this.$router.push('../home')},4000)
+         
       },
 
       async SetFirstPokemon(id){
         await axios.post('/api/setPokemon/'+id)  
-        console.log('added')    
+        console.log('added') 
+        return user.dispatch('getUser');
+           
       },
       
       Fainted(poke){

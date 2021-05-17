@@ -4,7 +4,7 @@
         <div class="container">
             <div class="row justify-content">
                 <div class="col-md-8">
-                    <div class="card cambios" style="background-color:  #85c1e9; width: 65vw">
+                    <div class="card cambios" style="background-color:  #85c1e9; width: 100vw">
                         <h1>
                             <div class="card-header text-center izquierda">
                                 PERFIL
@@ -24,59 +24,13 @@
                                         </form>
                                         </div>
                                     </div>
-                                    <button
-                                        class="btn btn-secondary dropdown-toggle"
-                                        type="button"
-                                        id="dropdownMenuButton"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                    >
-                                        Options
-                                    </button>
-                                    <div
-                                        class="dropdown-menu"
-                                        aria-labelledby="dropdownMenuButton"
-                                    >
-                                        <button
-                                            v-on:click="boolean_reset"
-                                            class="dropdown-item"
-                                            href="#"
-                                        >
-                                            Reset Password
-                                        </button>
-                                        <button
-                                            v-on:click="boolean_change"
-                                            class="dropdown-item"
-                                            href="#"
-                                        >
-                                            Change dates
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </h1>
-                        <div v-if="change">
-                            <div class="cuadro_perfil">
-                                <div>
-                                    <change-component></change-component>
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="reset">
-                            <div class="cuadro_perfil">
-                                <div>
-                                    <reset-component></reset-component>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-        <div class="derecha">
-            <Mazo></Mazo>
         </div>
     </div>
 </template>
@@ -84,15 +38,14 @@
 <script>
 import { required, minLength, sameAs, email } from "vuelidate/lib/validators";
 import BaseInput from "../components/BaseInput.vue";
-import ResetComponent from "./ResetComponent.vue";
-import ChangeComponent from "./ChangeComponent.vue";
-import Mazo from "./Mazo.vue";
+import ChangePass from "./ChangePass.vue";
+import ChangeProfile from "./ChangeProfile.vue";
 import Vue from "vue";
 import VueSidebarMenu from "vue-sidebar-menu";
 Vue.use(VueSidebarMenu);
 
 export default {
-    components: { BaseInput, ChangeComponent, ResetComponent, Mazo },
+    components: { BaseInput, ChangeProfile, ChangePass},
     data() {
         return {
             form: {
@@ -206,7 +159,7 @@ export default {
             }
             let formData = new FormData();
             formData.append('image', this.image);
-            axios.post('/api/updateAvatar', formData, config)
+            axios.post('api/updateAvatar', formData, config)
                 .then(function (response) {
                     currentObj.success = response.data.success;
                     console.log(currentObj.success)
@@ -252,13 +205,6 @@ export default {
     padding: 0!important;
     background-color:  #85c1e9;
 
-}
-.derecha {
-    margin-top: 40px;
-    margin-right: 10px;
-    background-color: tomato;
-    width: 55vw;
-    height: 75vh;
 }
 .cambios {
     padding: 0;

@@ -5,6 +5,9 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreRegisterController;
+use App\Http\Requests\RequestNick;
+use App\Http\Requests\RequestEmail;
+use App\Http\Requests\RequestPass;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 // use Validator;
@@ -22,37 +25,49 @@ class ChangeController extends ApiResponseController
         return $this->successResponse($pokemons);
     }
     
-    public function update(Request $request) {
+    public function updateEmail(Request $request) {
         // dd($request->all()['nick']);
-        $validator = Validator::make($request->all(), StoreRegisterController::myRules2());
+        $validator = Validator::make($request->all(), RequestEmail::myRules());
 
-        $nick=$request->all()['nick'];
         $email=$request->all()['email'];
-        // $nick=$request->input('nick');
-        // return $this->successResponse($nick);
 
-        // dd($nick);
         if ($validator->fails()) {
             // return $validator->errors();
-            return $this->errorResponse($validator->errors($validator));
+            return $validator->errors($validator);
         }else{
             $id=\Auth::user()->id;
             $user=DB::table('users')->where('id',$id)->update([
-                'nick' => $nick,
                 'email' => $email,
             ]);
             // dd($validator->validated()); 
 
             return $this->successResponse("exito");
             }
+ 
+    }
 
-            
+
+    public function updateNick(Request $request) {
+        $validator = Validator::make($request->all(), RequestNick::myRules());
+
+        $nick=$request->all()['nick'];
+       
+        if ($validator->fails()) {
         
+            return $validator->errors($validator);
+        }else{
+            $id=\Auth::user()->id;
+            $user=DB::table('users')->where('id',$id)->update([
+                'nick' => $nick,
+            ]);
+            return $this->successResponse("exito");
+            }
+ 
     }
 
     public function reset(Request $request) {
         
-        $validator = Validator::make($request->all(), StoreRegisterController::myRules3());
+        $validator = Validator::make($request->all(), RequestPass::myRules());
         $password=$request->all()['password'];
         $opassword=$request->all()['opassword'];
         $id=\Auth::user()->id;
@@ -61,7 +76,7 @@ class ChangeController extends ApiResponseController
         $hashedPassword=$pass;
         if ($validator->fails() || (!(Hash::check($opassword, $hashedPassword)))) {
             // return $validator->errors();
-            return $this->errorResponse($validator->errors($validator));
+            return "Error";
         } else {
             $user=DB::table('users')->where('id',$id)->update([
                 'password' => Hash::make($password),

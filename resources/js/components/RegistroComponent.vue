@@ -92,7 +92,7 @@ export default {
             },
             password: {
                 required,
-                minLength: minLength(4)
+                minLength: minLength(8)
             },
             rpassword: {
                 required,
@@ -133,14 +133,14 @@ export default {
                     console.log("RESPUESTA ",response.data);
                     this.resetForm();
                     this.message=""
-                    this.$awn.success("Registro realizado con exito")
+                    this.$awn.success("Registered successfully")
                     this.$router.push('login')
 
                 })
                 .catch (error => {
                     console.log("ERROR ",error);
-                    this.$awn.warning("Email ya registrado")
-                    this.message="El email ya esta registrado"
+                    this.$awn.warning("Email already in use")
+                    this.message="The email is already registered"
                     this.$v.form.email.$model = "";
 
                 })
