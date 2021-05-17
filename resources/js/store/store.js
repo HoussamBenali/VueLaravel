@@ -74,7 +74,8 @@ export default new Vuex.Store({
 
         async logout ({ dispatch }) {
             await axios.post('logout')
-            localStorage.removeItem("who")
+            console.log('logout')
+            
             return dispatch("getUser") // dispatch => ejecutar una accion
         },
 
@@ -98,6 +99,7 @@ export default new Vuex.Store({
                     commit("SET_USER", null)
                     localStorage.removeItem("who")
                 })
+
             }
             
          
@@ -110,6 +112,10 @@ export default new Vuex.Store({
         async del_poke ({commit}, price){
             await commit('SET_PRICE_MORE',price)
         }
+
+        // async update_card ({commit}) {
+        //     await commit()
+        // }
 
             
     }

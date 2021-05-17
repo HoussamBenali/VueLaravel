@@ -5,7 +5,7 @@
   <img class="hi" alt="Pokelogo" src="/images/pokelogo.png" width="60" height="60">
   
   <router-link to="" class="link">
-    <h5 class="title"><b>PokeCards Online</b></h5>
+    <h5 class="title"><b>PokeCards</b></h5>
   </router-link>
 
     <b-navbar-toggle class="color" target="nav-collapse"/>
@@ -34,7 +34,7 @@
           <img :src="'/api/getAvatar'" style="max-width: 30px; max-height: 30px; min-width: 30px; min-height: 30px; border-radius: 50%; margin-right: 5px;">{{$store.state.user.nick}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" href="/changeAvatar">Change Avatar</a>
             <a class="dropdown-item" href="/changeProfile">Change Profile</a>
             <a class="dropdown-item" href="/changePass">Change Password</a>
             <a class="dropdown-item" href=""><a @click="Logout"  active-class="active">Logout</a></a>
@@ -59,6 +59,7 @@
 
 <script>
 
+import store from "../store/store"
 export default {
   data() {
     return {
@@ -66,12 +67,11 @@ export default {
   },
   name: 'navigator',
   methods:{
-     Logout(){
-        localStorage.removeItem('who');
-        this.$store.dispatch("logout")  
-        return this.$router.go('/login')
-      
-        
+    Logout(){
+        localStorage.removeItem("who")
+        store.dispatch("logout")
+        console.log('logout')
+        return this.$router.push('login')   
     },
     changeRoute(event){
     	const path = event.target.value;

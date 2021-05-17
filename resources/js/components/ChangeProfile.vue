@@ -95,8 +95,11 @@ export default {
         },
          async changeEmail() {    
                 console.log("Form enviado");
+                var pemail=this.$v.form.email.$model
+                var correo=pemail.toLowerCase()
+                //console.log(correo)
                 const res= await axios.post("/api/updateEmail", {
-                        email: this.$v.form.email.$model.toLowerCase(),
+                        email: correo,
                     })
                     
             console.log(res.data.data);

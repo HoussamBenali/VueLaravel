@@ -13,15 +13,13 @@ import Tutorial from '../components/Tutorial';
 import Adventure from '../components/Adventure';
 import WildMap from '../components/WildMap';
 import getPokemons from '../components/GetPokemons';
-import Perfil from '../components/PerfilComponent';
+import Avatar from '../components/PerfilComponent';
 import ChangePass from '../components/ChangePass';
 import ChangeProfile from '../components/ChangeProfile';
 import Shop from '../components/TiendaPokeComponent';
 
 Vue.use(VueRouter)
 
-let auth = store.getters.isAuthenticated;
-console.log(auth, 'hi')
 
 const router = new VueRouter({
     mode:'history',
@@ -40,7 +38,7 @@ const router = new VueRouter({
         { path: '/starting',  name: 'starting', component: Comienzo, meta: { requiresAuth: true, requiresNoPokemon: true } },      
         { path: '/adventure', name: 'adventure', component: Adventure,  meta: { requiresAuth: true }},
         { path: '/wildMap/:area', name: 'wildMap', component: WildMap,  meta: { requiresAuth: true } },
-        { path: '/profile', name: 'profile', component: Perfil,  meta: { requiresAuth: true } },
+        { path: '/changeAvatar', name: 'avatar', component: Avatar,  meta: { requiresAuth: true } },
         { path: '/shop', name: 'shop', component: Shop,  meta: { requiresAuth: true } },
        
         //solo usar path pokemons cuando se quiera obtener datos de la api externa y guardarlos en la DDBB
@@ -52,7 +50,7 @@ const router = new VueRouter({
 
  router.beforeEach( (to, from, next) => {
 
-  console.log(store.getters.isAuthenticated)
+  //console.log(store.getters.isAuthenticated)
   if (to.matched.some(record => record.meta.requiresAuth)) {  
         
       if (!localStorage.getItem('who')){

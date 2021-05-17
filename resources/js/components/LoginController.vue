@@ -53,15 +53,14 @@ export default {
 	methods: {
     	async login () {
         	try{
-			
           	await this.$store.dispatch('login',this.form)
-			console.log(this.email)
+			this.form.email=this.form.email.toLowerCase()
           	const res = await axios.post('login',{
-          	email: this.email,
-          	password: this.password,
+          	email: this.form.email,
+          	password: this.form.password,
         	})
           	this.$awn.success("Bienvenido")
-          	console.log(res.data.pokemons)
+          	//console.log(res.data.pokemons)
           	if (res.data.pokemons == null){
             	return this.$router.push('starting');
           	} else{

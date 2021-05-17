@@ -27,7 +27,7 @@ Route::get('/tutorial/{pokemon}', [App\Http\Controllers\HomeController::class, '
 Route::get('/adventure', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/wildMap/{area}', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/pokemons', [App\Http\Controllers\web\WebController::class, 'index'])->name('pokemons');
-Route::get('/profile', [App\Http\Controllers\web\WebController::class, 'index'])->name('profile');
+Route::get('/changeAvatar', [App\Http\Controllers\web\WebController::class, 'index'])->name('changeAvatar');
 Route::get('/shop', [App\Http\Controllers\web\WebController::class, 'index'])->name('shop');
 Route::get('/changePass', [App\Http\Controllers\web\WebController::class, 'index'])->name('changePass');
 Route::get('/changeProfile', [App\Http\Controllers\web\WebController::class, 'index'])->name('changeProfile');
