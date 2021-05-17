@@ -15,7 +15,7 @@
   <div class="center">
 
     <router-link class="router" to="/tutorial/Bulbasaur">
-    <div @click="Bulbasaur" class="card starting carta">
+    <div @click="isBulbasaur" class="card starting carta">
       <img class="card-img-top" :src="Bulbasaur.image_path" alt="bulbasaur">
       <span class="card-name">{{Bulbasaur.name}}</span>
       <span class="card-text">HP: {{Bulbasaur.hp}}</span>
@@ -26,24 +26,25 @@
     </router-link>
 
     <router-link class="router" to="/tutorial/Charmander">
-    <div @click="Charmander" class="card starting carta">
+    <div @click="isCharmander" class="card starting carta">
       <img class="card-img-top" :src="CardsPath +'Charmander.png'" alt="charmander">
       <span class="card-name"><img class="types-icon" :src="IconsPath+'Fire.png'" /> 
        Charmander 
-      <img class="types-icon" :src="IconsPath+'Fire.png'" /></span>
-      <span class="card-text">ATK: 45</span>
-      <span class="card-text">DEF: 25</span>
-      <span class="card-attack">SPD: 10</span>
+      <img class="types-icon" :src="Charmander.image_path" /></span>
+      <span class="card-text">HP: {{Charmander.hp}}</span>
+      <span class="card-text">ATK: {{Charmander.atk}}</span>
+      <span class="card-text">DEF: {{Charmander.def}}</span>
+      <span class="card-attack">SPD: {{Charmander.spd}}</span>
     </div>
     </router-link>
     
     <router-link class="router" to="/tutorial/Squirtle">
-    <div @click="Squirtle" class="card starting carta">
-      <img class="card-img-top" :src="CardsPath +'Squirtle.png'" alt="squirtle">
-      <span class="card-name">Squirtle</span>
-      <span class="card-text">ATK: 35</span>
-      <span class="card-text">DEF:40</span>
-      <span class="card-attack">SPD: 5</span>
+    <div @click="isSquirtle" class="card starting carta">
+      <img class="card-img-top" :src="Squirte.image_path" alt="squirtle">
+      <span class="card-text">HP: {{Squirte.hp}}</span>
+      <span class="card-text">ATK: {{Squirte.atk}}</span>
+      <span class="card-text">DEF: {{Squirte.def}}</span>
+      <span class="card-attack">SPD: {{Squirte.spd}}</span>
     </div>
     </router-link>
   </div>
@@ -75,32 +76,36 @@ export default {
   data(){
     return{
       pokemon:'',
+      Bulbasaur:'',
+      Charmander:'',
+      Squirtle:'',
       CardsPath: " https://raw.githubusercontent.com/HoussamBenali/Assets/b09577915f44df2007555b8f23d58850cf26b696/images/Cartas/",
       IconsPath: "https://raw.githubusercontent.com/HoussamBenali/Assets/b09577915f44df2007555b8f23d58850cf26b696/images/Types/",
     }
   },
+  mounted(){
+    this.getPokeData
+  },
   methods:{
     async getPokeData(){
                 const resB = await axios.get('/api/pokemon/1')
-                let Bulbasaur = resB.data.data
-                console.log("Print bulbasur -------------")
-                console.log(Bulbasaur)
+                this.Bulbasaur = resB.data.data
 
                 const resC= await axios.get('/api/pokemon/4')
-                let Charmander = resC.data.data
+                this.Charmander = resC.data.data
               
                 const resS = await axios.get('/api/pokemon/'+7)
-                let Squirtle = resS.data.data
-                console.log(Squirtle)
+                this.Squirtle = resS.data.data
+  
     },
 
-    Charmander(){
+    isCharmander(){
       return this.pokemon = 'Charmander'
     },
-    Bulbasaur(){
+    isBulbasaur(){
       return this.pokemon = 'Bulbasaur'
     },
-    Squirtle(){
+    isSquirtle(){
       return this.pokemon = 'Squirtle'
     }
   },
