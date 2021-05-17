@@ -41,10 +41,10 @@
     <router-link class="router" to="/tutorial/Squirtle">
     <div @click="isSquirtle" class="card starting carta">
       <img class="card-img-top" :src="Squirtle.image_path" alt="squirtle">
-      <span class="card-text">HP: {{Squirte.hp}}</span>
-      <span class="card-text">ATK: {{Squirte.atk}}</span>
-      <span class="card-text">DEF: {{Squirte.def}}</span>
-      <span class="card-attack">SPD: {{Squirte.spd}}</span>
+      <span class="card-text">HP: {{Squirtle.hp}}</span>
+      <span class="card-text">ATK: {{Squirtle.atk}}</span>
+      <span class="card-text">DEF: {{Squirtle.def}}</span>
+      <span class="card-attack">SPD: {{Squirtle.spd}}</span>
     </div>
     </router-link>
   </div>
