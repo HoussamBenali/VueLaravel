@@ -97,7 +97,6 @@ export default new Vuex.Store({
                     commit("SET_USER", null)
                     localStorage.removeItem("who")
                 })
-
             }
             
          
@@ -110,10 +109,6 @@ export default new Vuex.Store({
         async del_poke ({commit}, price){
             await commit('SET_PRICE_MORE',price)
         }
-
-        // async update_card ({commit}) {
-        //     await commit()
-        // }
 
             
     }

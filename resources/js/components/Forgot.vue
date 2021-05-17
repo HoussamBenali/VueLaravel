@@ -57,7 +57,7 @@ export default {
    methods: {
      async Forgot(){
        try {
-          const res=await axios.post('forgot',{ email: this.$v.form.$model.email });
+          const res=await axios.post('forgot',{ email: this.$v.form.$model.email.toLowerCase() });
           console.log(res.data)
           if (res.data.token){
             this.message='The email was sent!';
