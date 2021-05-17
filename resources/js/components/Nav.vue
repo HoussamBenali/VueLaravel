@@ -69,7 +69,7 @@ export default {
      Logout(){
         localStorage.removeItem('who');
         this.$store.dispatch("logout")  
-        return this.$router.push('/login')
+        return this.$router.go('/login')
       
         
     },
