@@ -71,7 +71,7 @@ export default {
         localStorage.removeItem("who")
         store.dispatch("logout")
         console.log('logout')
-        return this.$router.push('login')   
+        return this.$router.go('login')   
     },
     changeRoute(event){
     	const path = event.target.value;

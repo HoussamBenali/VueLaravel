@@ -122,10 +122,11 @@ export default {
 
                 console.log(this.form)
                 // console.log("Form enviado")
-                
+                var correo=this.$v.form.email.$model
+                correo=correo.toLowerCase()
                 axios.post('api/register',{
                     nick:this.$v.form.nick.$model,
-                    email:this.$v.form.email.$model,
+                    email:correo,
                     password:this.$v.form.password.$model,
                     rpassword:this.$v.form.rpassword.$model,
                     img_name: this.img_name
