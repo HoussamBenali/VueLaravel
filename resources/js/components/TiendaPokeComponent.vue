@@ -22,6 +22,7 @@
 <script>
 import PokemonComponent from './PokemonComponent';
 import BaulComponent from './BaulComponent';
+
     export default {
         components: { PokemonComponent, BaulComponent },
         
@@ -69,7 +70,10 @@ import BaulComponent from './BaulComponent';
 
     }
 </script>
-<style scoped>
+
+<style scoped lang="scss">
+
+
 .tienda{
     display: flex;
     
