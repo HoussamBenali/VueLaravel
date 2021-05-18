@@ -1,5 +1,6 @@
 <template>
 <div class="header">
+
   <b-navbar class="navBar" toggleable="lg" type="light" variant="info">
 
   <img class="hi" alt="Pokelogo" src="/images/pokelogo.png" width="60" height="60">
@@ -27,20 +28,23 @@
 
       <b-nav-item href="#"  style="margin-right: 5px;" right >
         <router-link to="/mazos" active-class="active" class="bigger navindex">Mazos</router-link>
-      
       </b-nav-item>
+
+
         <div class="dropdown" >
           <button class="btn dropdown-toggle navindex lower" type="button" active-class="active" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img :src="'/api/getAvatar'" style="max-width: 30px; max-height: 30px; min-width: 30px; min-height: 30px; border-radius: 50%; margin-right: 5px;">{{$store.state.user.nick}}
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="/changeAvatar">Change Avatar</a>
-            <a class="dropdown-item" href="/changeProfile">Change Profile</a>
-            <a class="dropdown-item" href="/changePass">Change Password</a>
-            <a class="dropdown-item" href=""><a @click="Logout"  active-class="active">Logout</a></a>
+            <a class="dropdown-item navindex" href="/changeAvatar">Change Avatar</a>
+            <a class="dropdown-item navindex" href="/changeProfile" >Change Profile</a>
+            <a class="dropdown-item navindex" href="/changePass" >Change Password</a>
+            <a class="dropdown-item navindex" href=""><a @click="Logout()" active-class="active" style="display: block;">Logout</a></a>
           </div>
         </div>
 
+     
+    
     </b-navbar-nav>
 
       <b-navbar-nav class="ml-auto" v-else>
@@ -67,11 +71,10 @@ export default {
   },
   name: 'navigator',
   methods:{
-    Logout(){
-        localStorage.removeItem("who")
-        store.dispatch("logout")
-        console.log('logout')
-        return this.$router.go('login')   
+   async Logout(){
+        localStorage.removeItem("who")  
+        await store.dispatch('logout')
+        this.$router.push('login')  
     },
     changeRoute(event){
     	const path = event.target.value;
@@ -152,3 +155,4 @@ hr{
 }
 
 </style>
+

@@ -45,6 +45,7 @@
 import axios from 'axios';
 import Card from './Card';
 import Vue from 'vue';
+import user from '../store/store'
 
 export default {
   name: 'Tutorial',

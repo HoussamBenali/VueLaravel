@@ -64,8 +64,7 @@ export default new Vuex.Store({
             })
               
             if (log.data.nick!=null){
-                localStorage.setItem("who", true);
-                console.log(log.data)
+                localStorage.setItem("who", 'yes');
             } else{
                 localStorage.removeItem("who")
             }
@@ -73,14 +72,12 @@ export default new Vuex.Store({
             return dispatch("getUser") // dispatch => ejecutar una accion
             .catch(error => {
                 console.log(error)
-                localStorage.removeItem("who")
             })
         },
 
         async logout ({ dispatch }) {
-            localStorage.removeItem("who")
+            localStorage.removeItem("who")  
             await axios.post('logout')
-            localStorage.removeItem("who")
             return dispatch("getUser") // dispatch => ejecutar una accion
         },
 
@@ -102,7 +99,7 @@ export default new Vuex.Store({
                 commit("SET_USER", usuari)
                 })).catch(errors => {
                     commit("SET_USER", null)
-                    localStorage.removeItem("who")
+                    localStorage.removeItem('who')
                 })
 
             }

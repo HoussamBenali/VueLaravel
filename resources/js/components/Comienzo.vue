@@ -134,7 +134,7 @@ export default {
 @import "../../css/cardsMobile.css";
 
 //background: linear-gradient(45deg, #17ead9, #6078ea);
-
+@media (min-width: 630px) {
 .chooseOne{
     display: flex;
     flex-wrap: wrap;
@@ -167,6 +167,6 @@ export default {
     animation: reflect 3s infinite linear;
     /*animation-direction: alternate;*/
 }
-
+}
 
 </style>

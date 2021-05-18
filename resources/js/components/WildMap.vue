@@ -14,7 +14,7 @@
     </div>
   <div class="bottom-menu">
         <div class="battle-text text-box-left">
-            {{battleText}}
+            {{battleText}}<br>
             <button v-if="attacks" class="attackback" @click="goBack()">Go Back</button>
         </div>
           <div class="text-box-right">
@@ -48,8 +48,9 @@
     <div class="change-poke-text">
       {{changeText}}
     </div>
+    <br>
     <div class="goback">
-    <button class="back" @click="goBack()">Go Back</button>
+      <button class="back" @click="goBack()">Go Back</button>
     </div>
   </div>
 </div>
@@ -286,7 +287,7 @@ selectOption(option) {
     
   }else if (option==4){
       this.battleText = "You ran away";
-      setTimeout(() => {this.$router.push('adventure')}, 2000);
+      setTimeout(() => {this.$router.push('../adventure')}, 2000);
   
   }
 },
@@ -562,6 +563,19 @@ async getOpponent(){
   .battle-arena{
     width: 100%;
   }
+
+  .attackback{
+    margin-top: 0.5vh;
+    border-radius: 1vh;
+    position:absolute;
+    padding: 2vh;
+    right:5px;
+    top: 0;
+
+  }
+
+
 }
+
 
 </style>
